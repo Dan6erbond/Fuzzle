@@ -71,10 +71,16 @@ while True:
         if search != "":
             time_started = datetime.now()
             results = searcher.find(values, search)
-            print("Searcher: {} results | {}".format(len(results), datetime.now() - time_started))
+            time_ended = datetime.now()
+            for result in results:
+                print(result["key"])
+            print("Searcher: {} results | {}\n".format(len(results), time_ended - time_started))
             time_started = datetime.now()
             results = searcher_new.find(values, search)
-            print("New Searcher: {} results | {}".format(len(results), datetime.now() - time_started))
+            time_ended = datetime.now()
+            for result in results:
+                print(result["key"])
+            print("New Searcher: {} results | {}".format(len(results), time_ended - time_started))
         else:
             pass
     except KeyboardInterrupt:

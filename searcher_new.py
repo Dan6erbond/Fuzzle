@@ -1,6 +1,4 @@
-MAX = 0.3
-
-def find(options, search):
+def find(options, search, coverage_multiplier=0.02975):
     search = search.lower().strip()
     
     parts = list()
@@ -10,6 +8,9 @@ def find(options, search):
                 parts.append(search[i:i+size])
 
     parts.sort(key = lambda s: len(s), reverse=True)
+
+    # max_coverage = 1 - len(search.split(" ")) * coverage_multiplier # 0.4 for Substar
+    max_coverage = 1 - len(search) * coverage_multiplier # 0.02975 for Substar
     
     results = list()
     for option in options:
@@ -22,8 +23,8 @@ def find(options, search):
                 best = part
                 break
         coverage = len(best) / len(search)
-
-        if coverage < 0.75:
+        
+        if coverage < max_coverage:
             continue
 
         match = 1 if option == search else 0

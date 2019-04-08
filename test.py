@@ -5,16 +5,15 @@ from datetime import datetime
 
 values = set()
 
-tags = ["create sub", "mod", "moderation", "moderator tools",
-           "mod tools", "subreddit moderation", "adopt sub",
-           "request sub", "ideas", "market", "sub name", "rules",
-           "advertising", "content", "feedback", "css", "hire mods",
-           "sidebar", "modmail", "memes", "automod", "bots", "reddit",
-           "praw", "discord", "messages", "programming", "python"]
+tags = [
+    "reddit the frontpage of the internet",
+    {
+        "key": "reddit",
+        "tags": ["frontpage"]
+    }
 
-for t in tags:
-    values.add(t.strip())
-
+]
+    
 with open("reddits.json") as f:
     l = json.loads(f.read())
     for d in l["data"]["children"]:
@@ -63,20 +62,24 @@ with open("movies.json", encoding="utf8") as f:
     for m in l:
         values.add(m["title"].strip())
 
+tags.extend(values)
+
 print(len(values))
 
 while True:
     try:
         search = input("Enter search query: ")
         if search != "":
+            '''
             time_started = datetime.now()
-            results = searcher.find(values, search)
+            results = searcher.find(tags, search)
             time_ended = datetime.now()
             for result in results:
                 print(result["key"])
             print("Searcher: {} results | {}\n".format(len(results), time_ended - time_started))
+            '''
             time_started = datetime.now()
-            results = searcher_new.find(values, search)
+            results = searcher_new.find(tags, search, 0.04)
             time_ended = datetime.now()
             for result in results:
                 print(result["key"])

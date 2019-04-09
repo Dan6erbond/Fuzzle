@@ -17,7 +17,6 @@ The `find()` function returns a list of results in the form of dictionaries. If 
 
 `match` is a boolean which, when `True`, will be the only result the searcher returns and the `accuracy` goes from 0 to 1 with 1 being the highest accuracy and 0 the lowest. `category` is a field that the searcher uses to sort the results with each category meaning the following. Always the lowest category available for the result will be stored in the field `category` which stand all have their own meanings:
 
-
 **Category 1:** The search was found in the result.
 
 **Category 2:** The result starts with a word in the search.

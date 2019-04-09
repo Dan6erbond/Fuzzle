@@ -8,7 +8,8 @@ Python search engine with support for tags.
  - Support for dictionaries.
 
 ## Using
-The search engine can be used by forking a version of it and dragging the `searcher_new.py` into 
+The search engine can be used by forking a version of the repository and dragging the `searcher_new.py` script into your project folder. Through an import you will have access to it's only (current!) member, a function, `find()` which takes three arguments:
+ - 
 
 ## Example
 

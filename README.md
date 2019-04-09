@@ -16,4 +16,4 @@ Python search engine with support for tags.
 ## Roadmap
  - [x] Removing irrelevant results
  - [x] Supporting tags
- - [] Add support for custom objects
+ - [ ] Add support for custom objects

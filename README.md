@@ -35,7 +35,7 @@ The `find()` function returns a list of results in the form of dictionaries. If 
 **Category 7:** A word in the search was found in a tag.
 
 ## Example
-The (Demo File)[demo.py] can be downloaded along with the (data)[data] folder which contains a dataset currently comprised of movies and countries with their tags being the casted actors in the case of the movies and country codes for the countries. Simply running the (Demo File)[demo.py] allows you to search for a movie or country and opening it will show you a practical example of implementing the search engine. It also includes results from an outdated branch of the search engine in case you're interested in modifying it's simpler code for your own needs.
+The (Demo File)[demo.py] can be downloaded along with the (data)[/data] folder which contains a dataset currently comprised of movies and countries with their tags being the casted actors in the case of the movies and country codes for the countries. Simply running the (Demo File)[demo.py] allows you to search for a movie or country and opening it will show you a practical example of implementing the search engine. It also includes results from an outdated branch of the search engine in case you're interested in modifying it's simpler code for your own needs.
 
 A simple example which you can be copy-pasted to understand how the engine is used:
 

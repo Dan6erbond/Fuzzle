@@ -39,9 +39,16 @@ The `find()` function returns a list of results in the form of dictionaries. If 
 **Category 7:** A word in the search was found in a tag.
 
 ## Example
-The [Demo File](demo.py) can be downloaded along with the [data](data) folder which contains a dataset currently comprised of movies and countries with their tags being the casted actors in the case of the movies and country codes for the countries. Simply running the [Demo File](demo.py) allows you to search for a movie or country and opening it will show you a practical example of implementing the search engine. It also includes results from an outdated branch of the search engine in case you're interested in modifying it's simpler code for your own needs.
+The [Demo File](demo.py) can be downloaded along with the [data](data) folder which contains a few datasets that can be used to test the searcher. Simply running the [Demo File](demo.py) allows you to pick a category and search through the data with the current dataset containing the following:
 
-A simple example which you can be copy-pasted to understand how the engine is used:
+ - **Movies:** A list of 28 795 movies from 1990 to the present day with the source being a JSON file found [here](https://raw.githubusercontent.com/prust/wikipedia-movie-data/master/movies.json) which was restructured to turn the movies' names into keys and their cast into the tags. This allows you to search for a movie not only by name, but also by actor.
+ - **Games:** A list of 2922 games scraped from the [SteamAPI]() which uses the game's name as the key as well as the genre(s), platform(s) and category(-ies) as tags.
+  - **Categories:** The SteamAPI has (so far) returned 27 unique categories including `captions available`, `multi-player`, `online multi-player`, `includes source SDK`, `includes level editor`, `in-app purchases`, `shared/split screen`, `full controller support`, `MMO`, `online co-op`, `cross-platform multiplayer`, `partial controller support`, `steam achievements`, `local co-op`, `steam leaderboards`, `stats`, `commentary available`, `steam turn notifications`, `steam workshop`, `steam cloud`, `single-player`, `steam trading cards`, `co-op`, `local multi-player`.
+  - **Genres:** The data contained 30 unique genres so far including `action`, `utilities`, `gore`, `strategy`, `animation & modeling`, `photo editing`, `education`, `sports`,`simulation`, `web publishing`, `documentary`, `sexual content`, `software training`, `tutorial`, `indie`, `rpg`, `massively multiplayer`, `design & illustration`, `game development`, `video production`, `nudity`, `audio production`, `casual`, `free to play`, `racing`, `adventure`, `violent`, `early access` and `accounting`.
+ - **Companies:** A list of 5002 companies with their respective industry, state and city as tags which allows searches such as "california" or "food" to yield brands that do not contain the searched keyword in their name but instead are based in a specific state, city or are active in a certain industry.
+ - **Countries:** A list of 240 countries with most of their major cities added as tags to allow finding a country by searching for a city.
+
+A simple example which can be copy-pasted to understand how the engine is used:
 
 ```python
 ### Author: Dan6erbond ###
@@ -75,15 +82,19 @@ elif results[0]["match"]:
     print("Found {}!".format(results[0]["key"]))
 else:
     for result in results:
-        print(result["key"])
+        print(result["key"]) # will result in a single print being "Reddit"
 ```
 
 ## Links
-
+ - **[SteamAPI](https://store.steampowered.com/api):** The source of the list of games.
+ - **[Awesome JSON Datasets](https://github.com/jdorfman/awesome-json-datasets):** Source of the list of movies as well as countries (without the cities).
+ - **[Cities of the World](https://github.com/lutangar/cities.json):** List of cities with their corresponding Country Code which was migrated to [countries.json](/data/places/countries.json).
+ - **[Inc 5000](https://sethwaite.com/download-inc-5000-2017-data-set/):** A ranking of the 5000 quickest growing privately-held companies in America.
 
 ## Roadmap
  - [x] Removing irrelevant results.
  - [x] Supporting tags.
+ - [ ] Support for prioritizing different fields.
  - [ ] Add support for custom objects.
  - [ ] Return the match at first position and the rest as well.
  - [ ] Models for different search types.

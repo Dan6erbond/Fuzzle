@@ -8,7 +8,7 @@ Python search engine with support for tags.
  - Support for dictionaries.
 
 ## Using
-The search engine can be used by forking a version of the repository and dragging the (Searcher Script)[searcher_new.py] script into your project folder. Through an import you will have access to it's only (current!) member, a function, `find()` which takes three arguments:
+The search engine can be used by forking a version of the repository and dragging the (Searcher Script)[/searcher_new.py] script into your project folder. Through an import you will have access to it's only (current!) member, a function, `find()` which takes three arguments:
  - **options:** Here you feed the function a list of either dictionaries or strings. If you are feeding it dictionaries, they will have to have the attributes `key` and `tags`. Tags can be present, but it isn't required. `tags` is a list of strings which is the fallback if the searcher does not find the searched value in the `key`.
  - **search:** Represents the term you're looking for which the searcher will use and split up into single parts to find how coverage and accuracy results to return in order from best to worst.
  - **return_all (optional):** Boolean whether only a full-match should be returned or all similar results. Does not consider a tag-match as a full-match (yet) and is defaulted to `True`.

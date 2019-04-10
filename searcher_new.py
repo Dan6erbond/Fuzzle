@@ -1,4 +1,4 @@
-def find(options, search, coverage_multiplier=0.02975):
+def find(options, search, return_all=True, coverage_multiplier=0.02975):
     search = search.lower().strip()
     
     parts = list()
@@ -31,7 +31,8 @@ def find(options, search, coverage_multiplier=0.02975):
 
         match = 1 if key == search else 0
         word_matches = set()
-        tag_matches = set()
+        tag_match = False
+        tag_occurence = False
         starts_with = 2 if key.startswith(search) else 0
         starts_with_word = 0
         starts_with_key = 1 if search.startswith(key) else 0
@@ -46,39 +47,47 @@ def find(options, search, coverage_multiplier=0.02975):
                     word_matches.add(word1)
 
             for tag in tags:
-                if word == tag:
-                    tag_matches.add(tag)
+                tag = tag.lower()
+                if search == tag:
+                    tag_match = True
+                if word in tag:
+                    tag_occurence = True
         
         possible_accuracy = 1 + 2 + 1 + 1 + 2 + 2 + len(words)
         accuracy = (match + starts_with + starts_with_word + starts_with_key + key_in_search + search_in_key + len(word_matches)) / possible_accuracy
 
-        if coverage < max_coverage and len(tag_matches) == 0:
+        if coverage < max_coverage and not tag_match and not tag_occurence:
             continue
 
-        cat = 5
+        cat = 7
         if match == 1:
-            option["match"] = True
-            return [option]
+            cat = 0
         elif search_in_key == 2:
             cat = 1
-        elif starts_with_word == 2:
-            cat = 2
         elif starts_with == 2:
+            cat = 2
+        elif tag_match:
             cat = 3
-        elif key_in_search == 1:
+        elif starts_with_word == 2:
             cat = 4
-        elif starts_with_key == 1:
+        elif key_in_search == 1:
             cat = 5
-        elif len(tag_matches) != 0:
+        elif starts_with_key == 1:
             cat = 6
+        elif tag_occurence:
+            cat = 7
 
         option["coverage"] = coverage
         option["accuracy"] = accuracy
         option["cat"] = cat
         option["match"] = match == 1
-        results.append(option)
+        
+        if return_all:
+            results.append(option)
+        elif match == 1:
+            return [option]
 
     results.sort(key = lambda i: i["accuracy"], reverse=True)
     results.sort(key = lambda i: i["cat"])
-
+    
     return results

@@ -1,6 +1,10 @@
 # Fuzzle
 Python search engine with support for tags.
 
+![Python Version](https://img.shields.io/badge/python-3.5+-blue.svg)
+![Version](https://img.shields.io/badge/version-0.7-orange.svg)
+![Discord](https://img.shields.io/badge/See_it_in_action-purple.svg?logo=discord&logoColor=white&labelColor=697ec4&color=7289da)
+
 ## Key Features
  - Searching through strings.
  - Ignoring low coverage results.

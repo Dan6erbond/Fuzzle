@@ -87,3 +87,4 @@ else:
  - [ ] Add support for custom objects.
  - [ ] Return the match at first position and the rest as well.
  - [ ] Models for different search types.
+ - [ ] Discord bot framework.

@@ -88,7 +88,8 @@ else:
 ## Performance
 Comparing the performance to a fairly common search engine [Whoosh](https://whoosh.readthedocs.io/en/latest/) as well as the [old search engine](searcher.py) yields that Fuzzle has a lot of space up for getting faster but seems to be significantly easier to setup given you use dictionaries for your dataset. Whoosh is a faster but does not find results for every search because it seems to be limited to using a single field at once to search through:
 
-```2080 games
+```
+2080 games
 28795 movies
 5002 companies
 240 countries
@@ -131,7 +132,8 @@ New Searcher: 4 results | 0:00:00.034905 - Top Result: Deep Rock Galactic
 Searching for Linux in games.
 Whoosh: 0 results | 0:00:00.003024 - Top Result: No results
 Searcher: 0 results | 0:00:00.009944 - Top Result: No results
-New Searcher: 342 results | 0:00:00.019932 - Top Result: Escape from the police```
+New Searcher: 342 results | 0:00:00.019932 - Top Result: Escape from the police
+```
 
 ## Links
  - **[SteamAPI](https://store.steampowered.com/api):** The source of the list of games.

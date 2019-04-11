@@ -86,7 +86,7 @@ else:
 ```
 
 ## Performance
-Comparing the performance to a fairly common search engine [Whoosh]() as well as the [old search engine]() yields that Fuzzle has a lot of space up for getting faster but seems to be significantly easier to setup given you use dictionaries for your dataset. Whoosh is a faster but does not find results for every search because it seems to be limited to using a single field at once to search through:
+Comparing the performance to a fairly common search engine [Whoosh](https://whoosh.readthedocs.io/en/latest/) as well as the [old search engine](searcher.py) yields that Fuzzle has a lot of space up for getting faster but seems to be significantly easier to setup given you use dictionaries for your dataset. Whoosh is a faster but does not find results for every search because it seems to be limited to using a single field at once to search through:
 
 ```2080 games
 28795 movies

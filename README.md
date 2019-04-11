@@ -3,7 +3,7 @@ Python search engine with support for tags.
 
 ![Python Version](https://img.shields.io/badge/python-3.5+-blue.svg)
 ![Version](https://img.shields.io/badge/version-0.7-orange.svg)
-![Discord](https://img.shields.io/badge/See_it_in_action-purple.svg?logo=discord&logoColor=white&labelColor=697ec4&color=7289da)
+[![Discord](https://img.shields.io/badge/See_it_in_action-purple.svg?logo=discord&logoColor=white&labelColor=697ec4&color=7289da)](https://discord.gg/njYdKYH)
 
 ## Key Features
  - Searching through strings.
@@ -84,6 +84,54 @@ else:
     for result in results:
         print(result["key"]) # will result in a single print being "Reddit"
 ```
+
+## Performance
+Comparing the performance to a fairly common search engine [Whoosh]() as well as the [old search engine]() yields that Fuzzle has a lot of space up for getting faster but seems to be significantly easier to setup given you use dictionaries for your dataset. Whoosh is a faster but does not find results for every search because it seems to be limited to using a single field at once to search through:
+
+```2080 games
+28795 movies
+5002 companies
+240 countries
+
+Searching for Quantum of Solace in movies.
+Whoosh: 1 results | 0:00:00.022969 - Top Result: Quantum of Solace
+Searcher: 3103 results | 0:00:00.276369 - Top Result: Quantum of Solace
+New Searcher: 1 results | 0:00:00.802663 - Top Result: Quantum of Solace
+
+Searching for Spider in movies.
+Whoosh: 18 results | 0:00:00.009969 - Top Result: Spider-Man: Into the Spider-Verse
+Searcher: 20 results | 0:00:00.106716 - Top Result: The Spider
+New Searcher: 21 results | 0:00:00.238396 - Top Result: Spider-Man: Into the Spider-Verse
+
+Searching for United States of America in countries.
+Whoosh: 0 results | 0:00:00.027924 - Top Result: No results
+Searcher: 7 results | 0:00:00.001994 - Top Result: United States Minor Outlying Islands
+New Searcher: 240 results | 0:00:00.149739 - Top Result: United States
+
+Searching for Suhr in countries.
+Whoosh: 0 results | 0:00:00.027087 - Top Result: No results
+Searcher: 0 results | 0:00:00.000994 - Top Result: No results
+New Searcher: 1 results | 0:00:00.035910 - Top Result: Switzerland
+
+Searching for Food in companies.
+Whoosh: 3 results | 0:00:00.003987 - Top Result: Global Food Solutions
+Searcher: 17 results | 0:00:00.017953 - Top Result: Global Food Solutions
+New Searcher: 139 results | 0:00:00.031915 - Top Result: Foodmate US
+
+Searching for California in companies.
+Whoosh: 1 results | 0:00:00.004018 - Top Result: California Energy Solutions
+Searcher: 2 results | 0:00:00.016953 - Top Result: California Energy Solutions
+New Searcher: 671 results | 0:00:00.057874 - Top Result: California Energy Solutions
+
+Searching for Deep Rock in games.
+Whoosh: 1 results | 0:00:00.003021 - Top Result: Deep Rock Galactic
+Searcher: 11 results | 0:00:00.010970 - Top Result: Deep Rock Galactic
+New Searcher: 4 results | 0:00:00.034905 - Top Result: Deep Rock Galactic
+
+Searching for Linux in games.
+Whoosh: 0 results | 0:00:00.003024 - Top Result: No results
+Searcher: 0 results | 0:00:00.009944 - Top Result: No results
+New Searcher: 342 results | 0:00:00.019932 - Top Result: Escape from the police```
 
 ## Links
  - **[SteamAPI](https://store.steampowered.com/api):** The source of the list of games.

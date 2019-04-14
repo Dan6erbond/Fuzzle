@@ -87,14 +87,14 @@ A list of 28 795 movies from 1990 to the present day with the source being a JSO
 
 ### Games
 
-The set of games was scraped over a course of fourteen hours through the Steam API. It contains 27 799 games which were then loaded into [games.json](/data/games/games.json) containing the game's name as the `key` and the following as `tags`:
+The set of games was scraped over a course of fourteen hours through the Steam API. It currently contains 27 799 games which were then loaded into the [games.json](/data/games/games.json) file containing the game's name as the `key` and the following as `tags`:
 
  - **Categories:** The SteamAPI has (so far) returned 27 unique categories including `captions available`, `multi-player`, `online multi-player`, `includes source SDK`, `includes level editor`, `in-app purchases`, `shared/split screen`, `full controller support`, `MMO`, `online co-op`, `cross-platform multiplayer`, `partial controller support`, `steam achievements`, `local co-op`, `steam leaderboards`, `stats`, `commentary available`, `steam turn notifications`, `steam workshop`, `steam cloud`, `single-player`, `steam trading cards`, `co-op`, `local multi-player`.
  - **Genres:** The data contained 30 unique genres so far including `action`, `utilities`, `gore`, `strategy`, `animation & modeling`, `photo editing`, `education`, `sports`,`simulation`, `web publishing`, `documentary`, `sexual content`, `software training`, `tutorial`, `indie`, `rpg`, `massively multiplayer`, `design & illustration`, `game development`, `video production`, `nudity`, `audio production`, `casual`, `free to play`, `racing`, `adventure`, `violent`, `early access` and `accounting`.
  - **Developer(s) and publisher(s).**
  - **Platform(s):** Currently steam stores these values as booleans and the three available options are `windows`, `linux` and `macos`.
    
-Since this dataset is quite large and may prove useful in your own projects, I've made it as well as the [scraper](/data/games/steamscraper.py) available for you to download and run on your own!
+Since this dataset is quite large and may prove useful in your own projects, the current state of the data as well as the scraper and it's dependancies were archived in the [ZIP-Folder](/data/games.zip) and can be downloaded for you to freely use!
    
 ### Companies
 A list of 5002 companies with their respective industry, state and city as tags which allows searches such as "california" or "food" to yield brands that do not contain the searched keyword in their name but instead are based in a specific state, city or are active in a certain industry.

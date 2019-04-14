@@ -1,4 +1,4 @@
-def find(options, search, return_all=True, coverage_multiplier=0.02975):
+def find(options, search, return_all=False, coverage_multiplier=0.02975):
     search = search.lower().strip()
     
     parts = list()
@@ -15,6 +15,7 @@ def find(options, search, return_all=True, coverage_multiplier=0.02975):
     max_coverage = 1 - len(search) * coverage_multiplier # 0.02975 for Substar
     
     results = list()
+    
     for option in options:
         if isinstance(option, str):
             option = {"key": option}
@@ -82,10 +83,9 @@ def find(options, search, return_all=True, coverage_multiplier=0.02975):
         option["cat"] = cat
         option["match"] = match == 1
         
-        if return_all:
-            results.append(option)
-        elif match == 1:
+        if not return_all and match == 1:
             return [option]
+        results.append(option)            
 
     results.sort(key = lambda i: i["accuracy"], reverse=True)
     results.sort(key = lambda i: i["cat"])

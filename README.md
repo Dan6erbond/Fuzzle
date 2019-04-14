@@ -57,7 +57,7 @@ The set of games was scraped over a course of fourteen hours through the Steam A
  - **Developer(s) and publisher(s).**
  - **Platform(s):** Currently steam stores these values as booleans and the three available options are `windows`, `linux` and `macos`.
    
-Since this dataset is quite large and may prove useful in your own projects, I've made it as well as the (scraper)[/data/games/steamscraper.py] available for you to download and run on your own!
+Since this dataset is quite large and may prove useful in your own projects, I've made it as well as the [scraper](/data/games/steamscraper.py) available for you to download and run on your own!
    
 #### Companies
 A list of 5002 companies with their respective industry, state and city as tags which allows searches such as "california" or "food" to yield brands that do not contain the searched keyword in their name but instead are based in a specific state, city or are active in a certain industry.

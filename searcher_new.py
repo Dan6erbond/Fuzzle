@@ -1,21 +1,22 @@
 def find(options, search, return_all=False, coverage_multiplier=0.02975):
     search = search.lower().strip()
-    
+
     parts = list()
     for size in range(1,len(search)+1):
         for i in range(0,len(search)):
-            if i not in parts:
-                parts.append(search[i:i+size])
-
-    words = search.split(" ")
+            part = search[i:i+size]
+            if part not in parts:
+                parts.append(part)
 
     parts.sort(key = lambda s: len(s), reverse=True)
 
+    words = search.split(" ")
+
     # max_coverage = 1 - len(search.split(" ")) * coverage_multiplier # 0.4 for Substar
     max_coverage = 1 - len(search) * coverage_multiplier # 0.02975 for Substar
-    
+
     results = list()
-    
+
     for option in options:
         if isinstance(option, str):
             option = {"key": option}
@@ -39,7 +40,7 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
         starts_with_key = 1 if search.startswith(key) else 0
         key_in_search = 1 if key in search else 0
         search_in_key = 2 if search in key else 0
-        
+
         for word in words:
             for word1 in key.split(" "):
                 if word == word1 or word1.startswith(word) or word1.endswith(word) or word.startswith(word1) or word.endswith(word1):
@@ -53,7 +54,7 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
                     tag_match = True
                 if word in tag:
                     tag_occurence = True
-        
+
         possible_accuracy = 1 + 2 + 1 + 1 + 2 + 2 + len(words)
         accuracy = (match + starts_with + starts_with_word + starts_with_key + key_in_search + search_in_key + len(word_matches)) / possible_accuracy
 
@@ -77,17 +78,19 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
             cat = 6
         elif tag_occurence:
             cat = 7
+        else:
+            continue
 
         option["coverage"] = coverage
         option["accuracy"] = accuracy
         option["cat"] = cat
         option["match"] = match == 1
-        
+
         if not return_all and match == 1:
             return [option]
-        results.append(option)            
+        results.append(option)
 
     results.sort(key = lambda i: i["accuracy"], reverse=True)
     results.sort(key = lambda i: i["cat"])
-    
+
     return results

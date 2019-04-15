@@ -152,6 +152,10 @@ Searcher: 32 results | 0:00:00.456336 - Top Result: Arma: Cold War Assault Mac/L
 New Searcher: 5497 results | 0:00:00.258848 - Top Result: Arma: Cold War Assault Mac/Linux
 ```
 
+## Web Development
+
+For those interested in applying this search algorithm to their website: you're in luck! I needed the engine for my own [website](https://dan6erbond.github.io) which is why the algorithm now exists for JavaScript! It can be found [here](javascript/fuzzle.js) though using this [link](https://raw.githack.com/Dan6erbond/Fuzzle/master/javascript/fuzzle.js) or [this](https://rawcdn.githack.com/Dan6erbond/Fuzzle/faad868f8cec8d47880e5ed1c3ffbcc7a6ef833d/javascript/fuzzle.js) one to embed it in your site may prove smoother as GitHub's raw doesn't actually deliver the file with the correct headers for JavaScript to import as a module. Downloading it and embeding it locally in your site is always an option!
+
 ## Links
  - **[SteamAPI](https://store.steampowered.com/api):** The source of the list of games.
  - **[Awesome JSON Datasets](https://github.com/jdorfman/awesome-json-datasets):** Source of the list of movies as well as countries (without the cities).
@@ -166,3 +170,4 @@ New Searcher: 5497 results | 0:00:00.258848 - Top Result: Arma: Cold War Assault
  - [ ] Return the match at first position and the rest as well.
  - [ ] Models for different search types.
  - [ ] Discord bot framework.
+ - [x] JavaScript port.

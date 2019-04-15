@@ -1,4 +1,4 @@
-export default function find(options, search, return_all=false, coverage_multiplier=0.02975){
+export default function find(options, search, fields=[], return_all=false, coverage_multiplier=0.02975){
   search = trim(search.toLowerCase());
 
   var parts = [];
@@ -30,10 +30,21 @@ export default function find(options, search, return_all=false, coverage_multipl
     var tags = "tags" in option ? option["tags"] : [];
 
     var best = "";
+
     for (var j in parts){
+      if (best != ""){
+        break;
+      }
       if (key.includes(parts[j])){
         best = parts[j];
-        break;
+      } else {
+        for (var k in fields){
+          var field = fields[k];
+          var fieldValue = field in option ? option[field].toLowerCase() : "";
+          if (fieldValue.includes(parts[j])){
+            best = parts[j];
+          }
+        }
       }
     }
     var coverage = best.length / search.length;
@@ -98,8 +109,6 @@ export default function find(options, search, return_all=false, coverage_multipl
       cat = 6;
     } else if (tag_occurence) {
       cat = 7;
-    } else {
-      continue;
     }
 
     option["coverage"] = coverage;
@@ -119,6 +128,23 @@ export default function find(options, search, return_all=false, coverage_multipl
 
   return results;
 }
+
+/*
+var query = "frontpage";
+var options = [
+  {
+    "key": "Reddit",
+    "tags": ["memes", "jokes", "humor"],
+    "description": "The Frontpage of the Internet."
+  },
+  {
+    "key": "Google",
+    "tags": ["Alphabet", "Sundar Pichai"],
+    "description": "Search Engine used by the entire World."
+  }
+]
+console.log(find(options, query, ["description"]));
+*/
 
 function trim(s){
   return ( s || '' ).replace( /^\s+|\s+$/g, '' );

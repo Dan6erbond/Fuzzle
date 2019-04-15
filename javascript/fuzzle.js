@@ -76,7 +76,7 @@ export default function find(options, search, fields=[], return_all=false, cover
       }
 
       for (var k in tags){
-        var tag = tags[k];
+        var tag = tags[k].toLowerCase();
         if (search == tag) {
           tag_match = true;
         } else if (tag.includes(word)) {

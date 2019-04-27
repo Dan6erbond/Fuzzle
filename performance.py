@@ -1,6 +1,6 @@
 import json
 import searcher
-import searcher_new
+import fuzzle
 import sys
 from datetime import datetime
 from whoosh import scoring
@@ -56,7 +56,7 @@ def test_performance(query_str, data):
     print("Searcher: {} results | {} - Top Result: {}".format(len(results), time_ended - time_started, tr))
 
     time_started = datetime.now()
-    results = searcher_new.find(data, query_str, coverage_multiplier=0.05)
+    results = fuzzle.find(data, query_str, coverage_multiplier=0.05)
     time_ended = datetime.now()
     tr = results[0]["key"] if len(results) > 0 else "No results"
     print("New Searcher: {} results | {} - Top Result: {}\n".format(len(results), time_ended - time_started, tr))

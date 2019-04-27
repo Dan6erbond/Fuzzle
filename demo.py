@@ -1,6 +1,6 @@
 import json
 import searcher
-import searcher_new
+import fuzzle
 import sys
 from datetime import datetime
 
@@ -51,7 +51,7 @@ while True:
             print("Searcher: {} results | {}\n".format(len(results), time_ended - time_started))
 
             time_started = datetime.now()
-            results = searcher_new.find(data, search, return_all=True, coverage_multiplier=0.05)
+            results = fuzzle.find(data, search, return_all=True, coverage_multiplier=0.05)
             max_results = min(len(results), 50)
             time_ended = datetime.now()
             for result in results[:max_results]:

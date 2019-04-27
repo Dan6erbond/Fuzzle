@@ -1,7 +1,7 @@
 ### Author: Dan6erbond ###
 ###  Date: 10.04.2019  ###
 ###    Version: 1.1    ###
-import searcher_new as searcher
+import fuzzle
 
 ### defining a list of options with tags ###
 options = [
@@ -21,7 +21,7 @@ options = [
 
 search = "Steve" # the searched string
 
-results = searcher.find(options, search)
+results = fuzzle.find(options, search)
 
 if len(results) == 0:
     print("Couldn't find any results!")

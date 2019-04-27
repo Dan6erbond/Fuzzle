@@ -1,4 +1,4 @@
-
+# Steam?
 data/games/steamgames-detail-1.json
 data/games/steamgames-detail-2.json
 data/games/steamgames-detail-4.json
@@ -11,3 +11,10 @@ data/games/steamgames-detail-8.json
 data/games/steamgames-detail.json
 data/games/steamgames-detail-3.json
 data/movies/OMDB API.txt
+
+# Editor configs
+.idea/
+.vscode/
+
+# Cache
+__pycache__/

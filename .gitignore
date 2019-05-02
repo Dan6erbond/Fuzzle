@@ -1,16 +1,5 @@
-# Steam?
-data/games/steamgames-detail-1.json
-data/games/steamgames-detail-2.json
-data/games/steamgames-detail-4.json
-data/games/steamgames-detail-5.json
-data/games/steamgames-detail-6.json
-data/games/steamgames-detail-7.json
-data/games/steamgames-detail-7.json
-data/games/steamgames-detail-9.json
-data/games/steamgames-detail-8.json
-data/games/steamgames-detail.json
-data/games/steamgames-detail-3.json
-data/games/steamgames-detail-10.json
+# Datasets
+data/games/steamgames-detail*
 data/movies/OMDB API.txt
 
 # Editor configs

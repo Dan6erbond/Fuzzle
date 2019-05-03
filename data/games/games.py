@@ -4,20 +4,20 @@ def write_games():
     dicts = list()
     cats = set()
     genres = set()
-    names = set()
+    ids = set()
 
     with open("steamgames-detail.json", encoding="utf8") as f:
         games = json.loads(f.read())
         for game in games:
             tags = list()
 
-            if "name" not in game:
+            if "name" not in game or "steam_appid" not in game:
                 continue
 
-            if game["name"] in names:
+            if game["steam_appid"] in ids:
                 continue
 
-            names.add(game["name"])
+            ids.add(game["steam_appid"])
             
             if "categories" in game:
                 for category in game["categories"]:
@@ -40,6 +40,7 @@ def write_games():
 
             game = {
                 "key": game["name"],
+                "appid": game["steam_appid"],
                 "tags": tags
                 }
 
@@ -54,4 +55,4 @@ def write_games():
 ##    print(cats)
 ##    print("{} games".format(len(dicts)))
 
-##write_games()
+# write_games()

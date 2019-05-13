@@ -3,7 +3,10 @@ package ch.xelaalex.fuzzle.Searcher;
 public class Option {
     private String key;
     private String[] tags;
-    private int coverage = 0;
+    private double coverage = 0;
+    private int cat = 0;
+    private double accuracy = 0;
+    private boolean match = false;
 
     public String getKey() {
         return key;
@@ -21,7 +24,7 @@ public class Option {
         this.tags = tags;
     }
 
-    public void setCoverage(int coverage) {
+    public void setCoverage(double coverage) {
         this.coverage = coverage;
     }
 
@@ -30,17 +33,32 @@ public class Option {
         this.tags = tags;
     }
 
-    public int getCoverage() {
+    public double getCoverage() {
         return coverage;
     }
 
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder("key: " + key);
-        for (int i = 0; i < tags.length; i++) {
-            string.append("tag ").append(i).append(" : ").append(tags[i]);
-        }
-        string.append(coverage);
-        return string.toString();
+        return key;
+    }
+
+    public void setCat(int cat) {
+        this.cat = cat;
+    }
+
+    public void setAccuracy(double accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public void setMatch(boolean match) {
+        this.match = match;
+    }
+
+    public double getAccuracy() {
+        return accuracy;
+    }
+
+    public int getCat() {
+        return cat;
     }
 }

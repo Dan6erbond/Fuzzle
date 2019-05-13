@@ -13,3 +13,5 @@ data/games/steamgames-detail-3.json
 data/movies/OMDB API.txt
 data/games/steamgames-detail-10.json
 java/.idea/
+java/build/
+

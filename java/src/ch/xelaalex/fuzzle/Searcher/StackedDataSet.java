@@ -1,9 +1,6 @@
 package ch.xelaalex.fuzzle.Searcher;
 
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The <code>StackedDataSet</code> allows too safe big amounts of Data while staying efficient. Data gets added on
@@ -36,17 +33,9 @@ public class StackedDataSet<E> implements Set<E> {
 
     private int maxSize;
 
-    private Class<E> genClass;
-
     private int cacheIndex = 0;
 
-    /**
-     * The stack is set to it's default value: <code>Integer.MAX_VALUE - 8</code>.
-     */
-    public StackedDataSet() {
-        //considered maximal safe size for an Array
-        this.maxSize = Integer.MAX_VALUE - 8;
-    }
+    private Object[] a;
 
     /**
      * @param maxSize maxSize sets a limit of how much the Dataset can store usually this is {@code Integer.MAX_VALUE -8}
@@ -55,19 +44,18 @@ public class StackedDataSet<E> implements Set<E> {
      */
     public StackedDataSet(int maxSize) {
         this.maxSize = maxSize;
+        a = new Object[maxSize];
+        @SuppressWarnings("unchecked") final E[] stack = (E[]) a;
+        this.stack = stack;
     }
 
     /**
      * Adds a the value on top of the stack
      *
-     * @param o the <code>Generified Object</code> is stored in the {@link StackedDataSet#stack stack}.
+     * @param e the <code>Generified Object</code> is stored in the {@link StackedDataSet#stack stack}.
      */
-    public boolean add(Object o) throws ClassCastException, NullPointerException, IllegalArgumentException {
-        if (stack == null) {
-            @SuppressWarnings("unchecked") final E[] stack = (E[]) Array.newInstance(o.getClass(), maxSize);
-            this.stack = stack;
-        }
-        stack[index] = (E) o;
+    public boolean add(E e) throws ClassCastException, NullPointerException, IllegalArgumentException {
+        stack[index] = e;
         changed = true;
         index++;
         return true;
@@ -85,13 +73,6 @@ public class StackedDataSet<E> implements Set<E> {
                 return true;
             }
         }
-        return false;
-    }
-
-
-    @Override
-    public boolean addAll(Collection c) {
-        //Todo
         return false;
     }
 
@@ -122,7 +103,7 @@ public class StackedDataSet<E> implements Set<E> {
 
     @Override
     public void clear() {
-        @SuppressWarnings("unchecked") final E[] stack = (E[]) Array.newInstance(genClass, maxSize);
+        @SuppressWarnings("unchecked") final E[] stack = (E[]) a;
         this.stack = stack;
     }
 
@@ -136,8 +117,8 @@ public class StackedDataSet<E> implements Set<E> {
     @Override
     public boolean containsAll(Collection c) {
         final Object[] tempArray = c.toArray();
-        for (int i = 0; i < tempArray.length; i++) {
-            if (!this.contains(tempArray[i])) return false;
+        for (Object o : tempArray) {
+            if (!this.contains(o)) return false;
         }
         return true;
     }
@@ -158,10 +139,9 @@ public class StackedDataSet<E> implements Set<E> {
     public E[] toArray(boolean strip) {
         if (strip) {
             if (changed) {
-                @SuppressWarnings("unchecked") final E[] cache = (E[]) Array.newInstance(genClass, index + 1);
-                for (int i = cacheIndex; i < cache.length; i++) {
-                    cache[i] = stack[i];
-                }
+                @SuppressWarnings("unchecked") final E[] cache = (E[]) a;
+                if (cache.length - cacheIndex >= 0)
+                    System.arraycopy(stack, cacheIndex, cache, cacheIndex, cache.length - cacheIndex);
                 this.cache = cache;
                 cacheIndex = index;
             }
@@ -173,17 +153,23 @@ public class StackedDataSet<E> implements Set<E> {
     /**
      * Adds an Array to the StackedDataSet
      *
-     * @param eArray The Evaluable that gets added on top of the existing Array it won't be evaluated in any kind of manner.
-     *               If you just want to override the existing Evaluable in the set {@link StackedDataSet#setAll setAll()}
-     *               is way more efficient though.
+     * @param eCollection The Evaluable that gets added on top of the existing Array it won't be evaluated in any kind of manner.
+     *                    If you just want to override the existing Evaluable in the set {@link StackedDataSet#setAll setAll()}
+     *                    is way more efficient though.
      */
-    public void addAll(E[] eArray) {
+    public boolean addAll(Collection<? extends E> eCollection) {
+        @SuppressWarnings("unchecked") E[] eArray = (E[]) eCollection.toArray();
+        return addAll(eArray);
+    }
+
+    public boolean addAll(E[] eArray) {
         for (int i = 0; i < eArray.length; i++) {
             if (eArray[i] == null) break;
             this.stack[i + index] = eArray[i];
         }
         index += eArray.length;
         changed = true;
+        return true;
     }
 
     /**
@@ -214,8 +200,27 @@ public class StackedDataSet<E> implements Set<E> {
     }
 
     @Override
-    public Iterator iterator() {
-        //Todo
-        return null;
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            int index = -1;
+            int maxSize = stack.length - 1;
+
+            @Override
+            public boolean hasNext() {
+                return index < maxSize && stack[index + 1] != null;
+            }
+
+            @Override
+            public E next() {
+                index++;
+                if (index > maxSize)
+                    throw new NoSuchElementException();
+                return stack[index];
+            }
+        };
+    }
+
+    public void sort(Comparator<E> comparator) {
+        Arrays.sort(stack, comparator);
     }
 }

@@ -13,9 +13,12 @@ import java.io.FileReader;
 public class Launcher {
     public static void main(String[] args) throws FileNotFoundException {
         String filePath = new File("").getAbsolutePath();
-        JsonReader reader = new JsonReader(new FileReader(filePath + "\\data\\games\\games.json"));
-        Option[] options = new Gson().fromJson(reader, Option[].class);
-
-        new Searcher().find(new StackedDataSet<Option>(options.length), "aragami");
+        JsonReader reader = new JsonReader(new FileReader(filePath + "\\data\\movies\\movies.json"));
+        Option[] optionsAsArray = new Gson().fromJson(reader, Option[].class);
+        StackedDataSet<Option> options = new StackedDataSet<>(optionsAsArray.length);
+        options.addAll(optionsAsArray);
+        for (Option option : new Searcher().find(options, "spider")) {
+            System.out.println(option.toString());
+        }
     }
 }

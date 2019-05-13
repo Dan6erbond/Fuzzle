@@ -42,6 +42,18 @@ public class Option {
         return key;
     }
 
+    public String toStringWithTags() {
+        StringBuilder string = new StringBuilder(key + ": ");
+        for (String tag : tags) {
+            string.append(tag).append(", ");
+        }
+        return string.toString();
+    }
+
+    public String toInformalString() {
+        return key + ": cat " + cat + " coverage: " + coverage + " accuracy: " + accuracy;
+    }
+
     public void setCat(int cat) {
         this.cat = cat;
     }

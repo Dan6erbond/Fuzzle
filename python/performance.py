@@ -11,22 +11,22 @@ from whoosh.fields import Schema, TEXT, KEYWORD
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 
 games = list()
-with open("data/games/games.json", encoding="utf8") as f:
+with open("../data/games/games.json", encoding="utf8") as f:
     games = json.loads(f.read())
 print("{} games".format(len(games)))
 
 movies = list()
-with open("data/movies/movies.json", encoding="utf8") as f:
+with open("../data/movies/movies.json", encoding="utf8") as f:
     movies = json.loads(f.read())
 print("{} movies".format(len(movies)))
 
 companies = list()
-with open("data/economy/companies.json", encoding="utf8") as f:
+with open("../data/economy/companies.json", encoding="utf8") as f:
     companies = json.loads(f.read())
 print("{} companies".format(len(companies)))
 
 countries = list()
-with open("data/places/countries.json", encoding="utf8") as f:
+with open("../data/places/countries.json", encoding="utf8") as f:
     countries = json.loads(f.read())
 print("{} countries\n".format(len(countries)))
 

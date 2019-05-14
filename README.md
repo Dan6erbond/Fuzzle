@@ -161,6 +161,9 @@ For those interested in applying this search algorithm to their website: you're 
  - **[Awesome JSON Datasets](https://github.com/jdorfman/awesome-json-datasets):** Source of the list of movies as well as countries (without the cities).
  - **[Cities of the World](https://github.com/lutangar/cities.json):** List of cities with their corresponding Country Code which was migrated to [countries.json](/data/places/countries.json).
  - **[Inc 5000](https://sethwaite.com/download-inc-5000-2017-data-set/):** A ranking of the 5000 quickest growing privately-held companies in America.
+ 
+### Logo
+The Logo for Fuzzle was created by @lydocia who has her own GitHub profile as well as a [website](https://www.lydocia.com).
 
 ## Roadmap
  - [x] Removing irrelevant results.

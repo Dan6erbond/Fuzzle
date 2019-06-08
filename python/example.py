@@ -1,5 +1,5 @@
 ### Author: Dan6erbond ###
-###  Date: 10.04.2019  ###
+###  Date: 08.06.2019  ###
 ###    Version: 1.1    ###
 import fuzzle
 
@@ -19,7 +19,7 @@ options = [
         }
     ]
 
-search = "githpb" # the searched string
+search = "GitHib" # the searched string
 
 results = fuzzle.find(options, search)
 

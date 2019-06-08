@@ -19,13 +19,13 @@ options = [
         }
     ]
 
-search = "Steve" # the searched string
+search = "githpb" # the searched string
 
 results = fuzzle.find(options, search)
 
 if len(results) == 0:
     print("Couldn't find any results!")
-elif results[0]["match"]:
+elif results[0]["match"]: # if it was a 100% identical match
     print("Found {}!".format(results[0]["key"]))
 else:
     for result in results:

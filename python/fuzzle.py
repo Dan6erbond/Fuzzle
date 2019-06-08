@@ -12,8 +12,8 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
 
     words = search.split(" ")
 
-    # max_coverage = 1 - len(search.split(" ")) * coverage_multiplier # 0.4 for Substar
-    max_coverage = 1 - len(search) * coverage_multiplier # 0.02975 for Substar
+    # max_coverage = 1 - len(search.split(" ")) * coverage_multiplier # 0.4
+    max_coverage = 1 - len(search) * coverage_multiplier # 0.02975
 
     results = list()
 
@@ -25,11 +25,15 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
         tags = option["tags"] if "tags" in option else list()
 
         best = ""
+        construct = ""
         for part in parts:
             if part in key:
-                best = part
-                break
-        coverage = len(best) / len(search)
+                if len(part) > len(best):
+                    best = part
+                if part not in construct:
+                    construct += part
+
+        coverage = len(construct) / len(search)
 
         match = 1 if key == search else 0
         word_matches = set()
@@ -61,10 +65,12 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
         if coverage < max_coverage and not tag_match and not tag_occurence:
             continue
 
+        typo_tolerance = len(key) / 5
+
         cat = 7
         if match == 1:
             cat = 0
-        elif search_in_key == 2:
+        elif search_in_key == 2 or (len(construct) - len(key)) <= typo_tolerance:
             cat = 1
         elif starts_with == 2:
             cat = 2

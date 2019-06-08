@@ -55,9 +55,8 @@ The Logo for Fuzzle was created by @lydocia who has her own GitHub profile as we
 ## Roadmap
  - [x] Removing irrelevant results.
  - [x] Supporting tags.
- - [ ] Support for prioritizing different fields.
- - [ ] Add support for custom objects.
- - [ ] Return the match at first position and the rest as well.
+ - [x] Mistype correction.
+ - [ ] Prioritizing fields.
+ - [ ] Support for custom objects.
+ - [x] Returning 100% matches at first position followed by rest.
  - [ ] Models for different search types.
- - [ ] Discord bot framework.
- - [x] JavaScript port.

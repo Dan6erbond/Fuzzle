@@ -120,3 +120,7 @@ Whoosh: 1 results | 0:00:00.014960 - Top Result: Arma: Cold War Assault Mac/Linu
 Searcher: 32 results | 0:00:00.456336 - Top Result: Arma: Cold War Assault Mac/Linux
 New Searcher: 5497 results | 0:00:00.258848 - Top Result: Arma: Cold War Assault Mac/Linux
 ```
+
+## Roadmap
+ - [ ] Discord bot framework.
+ - [x] Mistype correction.

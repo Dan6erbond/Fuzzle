@@ -1,14 +1,19 @@
-def find(options, search, return_all=False, coverage_multiplier=0.02975):
-    search = search.lower().strip()
-
+def get_parts(s):
     parts = list()
-    for size in range(1,len(search)+1):
-        for i in range(0,len(search)):
-            part = search[i:i+size]
+    for size in range(1,len(s)+1):
+        for i in range(0,len(s)-size+1):
+            part = s[i:i+size]
             if part not in parts:
                 parts.append(part)
 
     parts.sort(key = lambda s: len(s), reverse=True)
+
+    return parts
+
+def find(options, search, return_all=False, coverage_multiplier=0.02975):
+    search = search.lower().strip()
+
+    parts = get_parts(search)
 
     words = search.split(" ")
 

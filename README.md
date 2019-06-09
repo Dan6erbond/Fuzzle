@@ -10,7 +10,7 @@ Scaleable search engine with multiple versions and basic mistype correction.
  - Support for dictionaries.
 
 ## Algorithm
-👷‍♂️🚧 Work in progress! 🚧
+A concise documentation of the algorithm can be found [here](https://dan6erbond.github.io/fuzzle.html).
 
 ## Versions
 

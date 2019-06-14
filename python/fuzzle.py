@@ -13,8 +13,6 @@ def get_parts(s):
 def find(options, search, return_all=False, coverage_multiplier=0.02975):
     search = search.lower().strip()
 
-    parts = get_parts(search)
-
     words = search.split(" ")
 
     # max_coverage = 1 - len(search.split(" ")) * coverage_multiplier # 0.4
@@ -29,14 +27,21 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
         key = option["key"].lower().strip()
         tags = option["tags"] if "tags" in option else list()
 
-        best = ""
         construct = ""
-        for part in parts:
-            if part in key:
-                if len(part) > len(best):
-                    best = part
-                if part not in construct:
-                    construct += part
+        positions = list()
+        for size in range(len(search), 0, -1): # reverse loop through the possible lengths
+            for i in range(0, len(search)-size+1):
+                part = search[i:i+size]
+                if part in key and part not in construct:
+                    last_index = key.index(part) + size - 1
+                    covered = False
+                    for position in positions:
+                        if key.index(part) > position[0] and last_index < position[1]:
+                            covered = True
+                            break
+                    if not covered:
+                        construct += part
+                        positions.append((key.index(part), last_index))
 
         coverage = len(construct) / len(search)
 
@@ -95,6 +100,7 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
         option["coverage"] = coverage
         option["accuracy"] = accuracy
         option["cat"] = cat
+        option["construct"] = construct
         option["match"] = match == 1
 
         if not return_all and match == 1:

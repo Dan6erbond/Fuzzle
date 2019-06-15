@@ -28,20 +28,14 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
         tags = option["tags"] if "tags" in option else list()
 
         construct = ""
-        positions = list()
+        last = -1
         for size in range(len(search), 0, -1): # reverse loop through the possible lengths
             for i in range(0, len(search)-size+1):
                 part = search[i:i+size]
                 if part in key and part not in construct:
-                    last_index = key.index(part) + size - 1
-                    covered = False
-                    for position in positions:
-                        if key.index(part) > position[0] and last_index < position[1]:
-                            covered = True
-                            break
-                    if not covered:
+                    if key.index(part)-1 >= last and key.index(part)-1 < last + 3: # for lower margins
                         construct += part
-                        positions.append((key.index(part), last_index))
+                        last = key.index(part) + size - 1
 
         coverage = len(construct) / len(search)
 
@@ -72,7 +66,7 @@ def find(options, search, return_all=False, coverage_multiplier=0.02975):
         possible_accuracy = 1 + 2 + 1 + 1 + 2 + 2 + len(words)
         accuracy = (match + starts_with + starts_with_word + starts_with_key + key_in_search + search_in_key + len(word_matches)) / possible_accuracy
 
-        if coverage < max_coverage and not tag_match and not tag_occurence:
+        if coverage < max_coverage and not tag_match and not tag_occurence: # and accuracy < 0.2:
             continue
 
         typo_tolerance = len(key) / 5
